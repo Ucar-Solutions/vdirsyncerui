@@ -1,0 +1,19 @@
+{
+  "name": "ucarsolutions/vdirsyncerui",
+  "description": "Saving configuration data to pass to the external program vdirsyncer",
+  "type": "project",
+  "license": "AGPL",
+  "authors": [
+    {
+      "name": "Ucar Solutions UG",
+      "email": "info@ucar-solutions.de"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "^5.4",
+    "symfony/var-dumper": "^5.4"
+  },
+  "require": {
+    "doganoo/di-services": "^0.0.20"
+  }
+}

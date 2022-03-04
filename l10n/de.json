@@ -1,0 +1,25 @@
+{
+  "translations": {
+    "vdirsyncer UI": "vdirsyncer UI",
+    "vdirsyncer UI Configuration": "vdirsyncer UI Konfiguration",
+    "Existing Resources": "Vorhandene Resourcen",
+    "CalDav-Resources in your account": "CalDav-Ressourcen in Ihrem Konto",
+    "ID": "ID",
+    "URL": "URL",
+    "Username": "Benutzername",
+    "Password": "Passwort",
+    "Save": "Speichern",
+    "Saved": "Gespeichert",
+    "Existing Pairs": "Vorhandene Paare",
+    "The following CalDav resources are syncronised bidirectionally": "Die folgenden CalDav-Ressourcen werden bidirektional synchronisiert",
+    "Config ID": "Config ID",
+    "Reference Config ID": "Referenz Config ID",
+    "Please place the SHA256 Fingerprint colon separated, for instance: 94:FD:7A:CB:50:75:A4:69:82:0A:F8:23:DF:07:FC:69:3E:CD:90:CA. Please consult the <a href=\"http://vdirsyncer.pimutils.org/en/stable/ssl-tutorial.html\">vdirsyncer documentation</a> for further information": "Geben Sie bitte den SHA256 Fingerprint Doppelpunkt-getrennt an, also z.B. 94:FD:7A:CB:50:75:A4:69:82:0A:F8:23:DF:07:FC:69:3E:CD:90:CA. Bitte beachten Sie auch die <a href=\"http://vdirsyncer.pimutils.org/en/stable/ssl-tutorial.html\">vdirsyncer Dokumentation</a> für weitere Informationen.",
+    "Self Signed SSL Certificate SHA256 Fingerprint": "SHA256 Fingerprint zu dem Selbstsignierten SSL-Zertifikat",
+    "Self Signed Certificate": "Selbstsigniertes Zertifikat",
+    "Fingerprint": "Fingerprint",
+    "Storage": "Storage",
+    "Collection": "Collection"
+  },
+  "pluralForm": "nplurals=2; plural=(n != 1);"
+}

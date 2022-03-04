@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+    <id>vdirsyncerui</id>
+    <name>vdirsyncer UI</name>
+    <summary>UI for vdirsyncer configuration</summary>
+    <description><![CDATA[Saving configuration data to pass to the external program vdirsyncer]]></description>
+    <version>0.0.5</version>
+    <licence>agpl</licence>
+    <author mail="info@ucar-solutions.de" homepage="https://ucar-solutions.de">Ucar Solutions UG</author>
+    <namespace>VdirSyncerUI</namespace>
+    <category>tools</category>
+    <bugs>https://ucar-solutions.de/kontakt</bugs>
+    <dependencies>
+        <nextcloud min-version="12"/>
+    </dependencies>
+	<settings>
+		<personal>OCA\VdirSyncerUI\Settings\Personal\VdirSyncerUISettings</personal>
+		<personal-section>OCA\VdirSyncerUI\Settings\Personal\VdirSyncerUISection</personal-section>
+	</settings>
+    <background-jobs>
+        <job>OCA\VdirSyncerUI\BackgroundJob\TimedJob\Syncer</job>
+        <job>OCA\VdirSyncerUI\BackgroundJob\TimedJob\Discoverer</job>
+    </background-jobs>
+</info>
