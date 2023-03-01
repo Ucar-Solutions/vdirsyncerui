@@ -37,10 +37,10 @@ class VdirSyncerUISettings implements ISettings {
 
     public function __construct(
         VdirSyncerUIConfigRepository $vdirsyncerUiConfigRepository,
-                                     $UserId
+                                     $userId
     ) {
         $this->vdirsyncerUiConfigRepository = $vdirsyncerUiConfigRepository;
-        $this->userId                       = $UserId;
+        $this->userId                       = $userId;
 
         Util::addScript(IApplication::APP_ID, 'helper');
         Util::addScript(IApplication::APP_ID, 'vdirsyncerui');

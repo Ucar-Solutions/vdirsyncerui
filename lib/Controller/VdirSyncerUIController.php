@@ -51,7 +51,7 @@ class VdirSyncerUIController extends Controller {
     private LoggerInterface                  $logger;
 
     public function __construct(
-        string                           $AppName,
+        string                           $appName,
         IRequest                         $request,
         VdirSyncerUIConfigRepository     $vdirsyncerUiConfigPair,
         VdirSyncerUIConfigPairRepository $vdirsyncerUiConfigPairRepository,
@@ -59,15 +59,15 @@ class VdirSyncerUIController extends Controller {
         IURLService                      $urlService,
         SyncerDataService                $syncerDataService,
         LoggerInterface                  $logger,
-                                         $UserId
+                                         $userId
     ) {
-        parent::__construct($AppName, $request);
+        parent::__construct($appName, $request);
 
         $this->vdirsyncerUiConfigRepository     = $vdirsyncerUiConfigPair;
         $this->vdirsyncerUiConfigPairRepository = $vdirsyncerUiConfigPairRepository;
         $this->syncerService                    = $syncerService;
         $this->urlService                       = $urlService;
-        $this->userId                           = $UserId;
+        $this->userId                           = $userId;
         $this->syncerDataService                = $syncerDataService;
         $this->logger                           = $logger;
     }

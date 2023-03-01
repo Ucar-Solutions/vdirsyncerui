@@ -5,14 +5,14 @@
     <name>vdirsyncer UI</name>
     <summary>UI for vdirsyncer configuration</summary>
     <description><![CDATA[Saving configuration data to pass to the external program vdirsyncer]]></description>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <licence>agpl</licence>
     <author mail="info@ucar-solutions.de" homepage="https://ucar-solutions.de">Ucar Solutions UG</author>
     <namespace>VdirSyncerUI</namespace>
     <category>tools</category>
     <bugs>https://ucar-solutions.de/kontakt</bugs>
     <dependencies>
-        <nextcloud min-version="12"/>
+        <nextcloud min-version="12" max-version="26"/>
     </dependencies>
 	<settings>
 		<personal>OCA\VdirSyncerUI\Settings\Personal\VdirSyncerUISettings</personal>
