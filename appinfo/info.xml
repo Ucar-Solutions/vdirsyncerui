@@ -5,7 +5,7 @@
     <name>vdirsyncer UI</name>
     <summary>UI for vdirsyncer configuration</summary>
     <description><![CDATA[Saving configuration data to pass to the external program vdirsyncer]]></description>
-    <version>0.0.6</version>
+    <version>0.0.7</version>
     <licence>agpl</licence>
     <author mail="info@ucar-solutions.de" homepage="https://ucar-solutions.de">Ucar Solutions UG</author>
     <namespace>VdirSyncerUI</namespace>
