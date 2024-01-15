@@ -42,8 +42,8 @@ class VdirSyncerUISettings implements ISettings {
         $this->vdirsyncerUiConfigRepository = $vdirsyncerUiConfigRepository;
         $this->userId                       = $userId;
 
-        Util::addScript(IApplication::APP_ID, 'helper');
-        Util::addScript(IApplication::APP_ID, 'vdirsyncerui');
+        Util::addInitScript(IApplication::APP_ID, 'helper');
+        Util::addInitScript(IApplication::APP_ID, 'vdirsyncerui');
         Util::addStyle(IApplication::APP_ID, 'vdirsyncerui');
     }
 
