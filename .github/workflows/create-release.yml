@@ -37,6 +37,12 @@ jobs:
           sudo rm -rf .github/ .git/ build/ data/ tests/ 
           sudo rm -f .editorconfig .gitignore .travis.yml composer.json composer.lock Makefile phpunit.integration.xml phpunit.xml 
 
+      - name: show file content
+        run: |
+          pwd
+          ls -ltra
+          ls -ltra ../
+
       - name: Create Package
         run: |
           sudo tar -czf vdirsyncerui-$RELEASE_VERSION.tar.gz ../vdirsyncerui
