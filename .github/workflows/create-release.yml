@@ -45,7 +45,7 @@ jobs:
 
       - name: Create Package
         run: |
-          sudo tar -czf vdirsyncerui-0.0.0.tar.gz ../vdirsyncerui
+          sudo cd ../ && tar -czf vdirsyncerui-$RELEASE_VERSION.tar.gz vdirsyncerui
 
       - name: Create Release
         id: create_release
