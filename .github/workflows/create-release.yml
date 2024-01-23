@@ -12,11 +12,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-        env:
-          RELEASE_VERSION: ${{ steps.vars.outputs.tag }}
-          run: |
-            echo $RELEASE_VERSION
-            echo ${{ steps.vars.outputs.tag }}
+
+      - name: Set tag as environment variable
+#        run: echo "CURRENT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        run: echo "CURRENT_TAG=0.0.0" >> $GITHUB_ENV
 
       - name: Cache Composer dependencies
         uses: actions/cache@v2
@@ -45,7 +44,7 @@ jobs:
 
       - name: Create Package
         run: |
-          cd ../ && sudo tar -czf vdirsyncerui-$RELEASE_VERSION.tar.gz vdirsyncerui
+          cd ../ && sudo tar -czf vdirsyncerui-$CURRENT_TAG.tar.gz vdirsyncerui
 
       - name: Create Release
         id: create_release
@@ -53,7 +52,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          release_name: $RELEASE_VERSION
+          tag_name: $CURRENT_TAG
+          release_name: $CURRENT_TAG
           draft: false
           prerelease: false
 
@@ -64,8 +64,8 @@ jobs:
 #          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 #        with:
 #          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-#          asset_path: vdirsyncerui-$RELEASE_VERSION.tar.gz
-#          asset_name: vdirsyncerui-$RELEASE_VERSION.tar.gz
+#          asset_path: vdirsyncerui-$CURRENT_TAG.tar.gz
+#          asset_name: vdirsyncerui-$CURRENT_TAG.tar.gz
 #          asset_content_type: application/tar
 #
 #      - name: Nextcloud push app to appstore
