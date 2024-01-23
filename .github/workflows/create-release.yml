@@ -69,8 +69,10 @@ jobs:
           asset_name: vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz
           asset_content_type: application/tar
 
-      - name: Set the download URL
-        run: echo "ARTIFACT_DOWNLOAD_URL=https://github.com/${{ github.repository }}/releases/download/${{ env.CURRENT_TAG }}/vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz" >> $GITHUB_ENV
+      - name: Set Download URL
+        id: set_download_url
+        run: |
+          echo "::set-output name=download_url::https://github.com/${{ github.repository }}/releases/download/${{ env.CURRENT_TAG }}/vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz"
 
   deploy:
     needs: build
@@ -78,6 +80,10 @@ jobs:
     environment:
       name: Nextcloud App Store
     steps:
+      - name: show variable
+        run: |
+          echo ${{ needs.build.outputs.download_url }}
+
       - name: Nextcloud push app to appstore
         uses: R0Wi/nextcloud-appstore-push-action@v1.0.3
         with:
