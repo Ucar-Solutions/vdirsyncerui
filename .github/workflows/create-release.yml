@@ -1,7 +1,7 @@
 on:
   push:
-#    tags:
-#      - '*.*.*'
+    tags:
+      - '*.*.*'
 
 name: Create Release
 
@@ -9,12 +9,14 @@ jobs:
   build:
     name: Create Release
     runs-on: ubuntu-20.04
+    outputs:
+      download_url: ${{ steps.set_download_url.outputs.download_url }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Set tag as environment variable
-#        run: echo "CURRENT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+        #        run: echo "CURRENT_TAG=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
         run: echo "CURRENT_TAG=0.0.10" >> $GITHUB_ENV
 
       - name: Cache Composer dependencies
@@ -57,22 +59,32 @@ jobs:
           draft: false
           prerelease: false
 
-#      - name: Upload Release Asset
-#        id: upload-release-asset
-#        uses: actions/upload-release-asset@v1
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#        with:
-#          upload_url: ${{ steps.create_release.outputs.upload_url }}
-#          asset_path: ../vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz
-#          asset_name: vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz
-#          asset_content_type: application/tar
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ../vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz
+          asset_name: vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz
+          asset_content_type: application/tar
 
+      - name: Set the download URL
+        run: echo "ARTIFACT_DOWNLOAD_URL=https://github.com/${{ github.repository }}/releases/download/${{ env.CURRENT_TAG }}/vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz" >> $GITHUB_ENV
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: Nextcloud App Store
+    steps:
       - name: Nextcloud push app to appstore
         uses: R0Wi/nextcloud-appstore-push-action@v1.0.3
         with:
           app_name: vdirsyncerui
           appstore_token: ${{ secrets.APPSTORE_TOKEN }}
-          download_url: ${{ steps.attach_to_release.outputs.browser_download_url }}
+          download_url: ${{ needs.build.outputs.download_url }}
           app_private_key: ${{ secrets.APP_PRIVATE_KEY }}
           nightly: false
+
