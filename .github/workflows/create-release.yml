@@ -35,11 +35,11 @@ jobs:
       - name: Clean Up
         run: |
           sudo rm -rf .github/ .git/ build/ data/ tests/ 
-          sudo rm -f .editorconfig .gitignore .travis.yml composer.json composer.lock Makefile phpunit.integration.xml phpunit.xml output.log 
+          sudo rm -f .editorconfig .gitignore .travis.yml composer.json composer.lock Makefile phpunit.integration.xml phpunit.xml 
 
       - name: Create Package
         run: |
-          cd ../ && sudo tar -czf vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz vdirsyncerui
+          cd ../ && sudo tar  --exclude='output.log' -czf vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz vdirsyncerui
 
       - name: Create Release
         id: create_release
