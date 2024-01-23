@@ -44,7 +44,7 @@ jobs:
 
       - name: Create Package
         run: |
-          cd ../ && sudo tar -czf vdirsyncerui-$CURRENT_TAG.tar.gz vdirsyncerui
+          cd ../ && sudo tar -czf vdirsyncerui-${{ env.CURRENT_TAG }}.tar.gz vdirsyncerui
 
       - name: Create Release
         id: create_release
@@ -52,8 +52,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: $CURRENT_TAG
-          release_name: $CURRENT_TAG
+          tag_name: ${{ env.CURRENT_TAG }}
+          release_name: ${{ env.CURRENT_TAG }}
           draft: false
           prerelease: false
 
