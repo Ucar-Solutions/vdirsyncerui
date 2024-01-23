@@ -5,6 +5,10 @@ on:
 
 name: Create Release
 
+# Permission can be added at job level or workflow level
+permissions:
+  contents: write   # This is required to create/push the new git tag
+
 jobs:
   build:
     name: Create Release
