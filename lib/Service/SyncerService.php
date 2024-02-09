@@ -97,8 +97,8 @@ password = "${referencePassword}"
         $statusDir               = Application::$STATUS_DIR;
         $collectionNamePrincipal = "{$config->getCollection()}{$reference->getCollection()}";
         $collectionNameReference = "{$reference->getCollection()}{$config->getCollection()}";
-        $principalName           = Uuid::uuid1()->getHex();
-        $referenceName           = Uuid::uuid1()->getHex();
+        $principalName           = Uuid::uuid1()->getHex()->toString();
+        $referenceName           = Uuid::uuid1()->getHex()->toString();
 
         $content = str_replace('${pairName}', $pairName, $content);
         $content = str_replace('${statusDir}', $statusDir, $content);
