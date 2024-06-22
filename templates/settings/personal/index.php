@@ -170,12 +170,82 @@ $names = [];
                 </form>
             </div>
         </div>
+        <div>
+            <div class="section"><h2><?php p($l->t('Existing Pairs')); ?></h2>
+                <p class="vdirsyncerui-pair-hint"><?php p($l->t('The following CalDav Resources are syncronised bidirectionally')); ?></p>
+                <div class="actions" id="vdirsyncerui-pair-actions">
+                    <?php
+                    foreach ($vdirsyncerUiConfigs as $vdirsyncerUiConfig) {
+                        foreach ($vdirsyncerUiConfig->getPairs() as $mapping) {
+                            echo '<div class="actions">
+					<div class="actions__item colored more" data-config-id="' . $mapping->getConfigId() . '" data-reference-id="' . $mapping->getReferenceConfigId() . '">
+						<div class="actions__item__description">
+							' . $names[$mapping->getConfigId()] . ' (' . $mapping->getConfigId() . ')
+						</div>
+						<div class="vdirsyncerui-divider"></div>
+						<div class="actions__item__description">
+							' . $names[$mapping->getReferenceConfigId()] . ' (' . $mapping->getReferenceConfigId() . ')
+						</div>
+						<div class="actions__item__description">
+							<div class="icon-delete clickable vdirsyncerui-pair-remove-pair" data-id="' . $mapping->getId() . '"></div>
+						</div>
+					</div>
+				</div>';
+                        }
+                    }
+
+                    ?>
+                </div>
+            </div>
+            <div class="vdirsyncerui-setting-box">
+                <form id="vdirsyncerui-pair-form" method="POST">
+                    <label for="vdirsyncerui-pair-config-id" class="hidden-visually"><?php p($l->t('Config ID')); ?>
+                        : </label>
+
+                    <select
+                            id="vdirsyncerui-pair-config-id"
+                            name="vdirsyncerui-pair-config-id"
+                            autocomplete="vdirsyncerui-pair-config-id"
+                            autocapitalize="none"
+                    >
+                        <option value=""><?php p($l->t('Config ID')); ?></option>
+                        <?php
+                        foreach ($vdirsyncerUiConfigs as $vdirsyncerUiConfig) {
+                            echo '<option value="' . $vdirsyncerUiConfig->getId() . '">(' . $vdirsyncerUiConfig->getId() . ') ' . $names[$vdirsyncerUiConfig->getId()] . '[' . $vdirsyncerUiConfig->getCollection() . ']' . '</option>';
+                        }
+                        ?>
+
+                    </select>
+
+                    <label for="vdirsyncerui-pair-reference-config-id"
+                           class="hidden-visually"><?php p($l->t('Reference Config ID')); ?>: </label>
+                    <select
+                            id="vdirsyncerui-pair-reference-config-id"
+                            name="vdirsyncerui-pair-reference-config-id"
+                            autocomplete="vdirsyncerui-pair-reference-config-id"
+                            autocapitalize="none"
+                    >
+                        <option value=""><?php p($l->t('Reference Config ID')); ?></option>
+                        <?php
+                        foreach ($vdirsyncerUiConfigs as $vdirsyncerUiConfig) {
+                            echo '<option value="' . $vdirsyncerUiConfig->getId() . '">(' . $vdirsyncerUiConfig->getId() . ') ' . $names[$vdirsyncerUiConfig->getId()] . '[' . $vdirsyncerUiConfig->getCollection() . ']' . '</option>';
+                        }
+                        ?>
+
+                    </select>
+
+                    <input id="vdirsyncerui-pair-button" type="submit" value="<?php p($l->t('Save')); ?>"/>
+                    <span id="vdirsyncerui-pair-msg" class="msg success hidden"><?php p($l->t('Saved')); ?></span>
+                </form>
+            </div>
+        </div>
         <div class="vdsui--container">
             <div class="vdsui--us--logo">
             </div>
             <div class="vdsui--text">
                 <p>
-                    vdirsyncer UI is a service by <a class="vdsui--link" href="https://ucar-solutions.de/" target="_blank">Ucar Solutions UG
+                    vdirsyncer UI is a service by <a class="vdsui--link" href="https://ucar-solutions.de/"
+                                                     target="_blank">Ucar Solutions UG
                         (haftungsbeschränkt)</a>
                 </p>
             </div>
